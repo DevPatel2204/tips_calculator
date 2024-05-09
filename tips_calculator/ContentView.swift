@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var total = ""
     @State var tipPercent = 15.0
+    //@State var FinalAmount = 0.0
     var body: some View {
         ZStack{
             Image("Money")
@@ -19,35 +20,64 @@ struct ContentView: View {
         }
         Spacer()
         VStack{
-            HStack{
+            HStack(spacing:50){
                 Image("dollar")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 50,height: 50)
-                    .padding(30)
                 Text("Tip Calculator")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.bold)
                     .fontDesign(.monospaced)
             }
-            HStack{
+            Spacer()
+            HStack(spacing:50){
                 Text("$")
-                TextField("Amount",text:$total)
+                TextField("Enter Amount",text:$total)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
             }
+            .font(.system(size: 30))
+            Spacer()
+//            HStack(spacing:30){
+//                Text("Tip")
+//                TextField("Enter Tip Amount",text:$tipPercent)
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//            }
+//            .font(.system(size: 30))
+            Spacer()
+            
+//            Button("Calculate Tip"){
+//                calculateTip()
+//            }
+            
+//
             HStack{
-                Slider(value:$tipPercent , in:1...30, step: 1.0)
+                Slider(value:$tipPercent , in:1...50, step: 1.0)
                 Text("\(Int(tipPercent))")
                 Text("%")
             }
-            if let totalNum = Double(total) {
-                Text("Tip Amount: $\(totalNum * tipPercent/100)")
-            }else{
-                Text("Please add a numeric Value")
+            if let totalNumber = Double(total){
+                             Text("Tip Amount: Rs\(totalNumber * tipPercent/100, specifier: "%0.2f")")
+                         }else {
+                             Text("Please enter a numeric input")
+                         }
+            Button("Calculate"){
+                finalAmount()
             }
+            
+            func finalAmount(){
+                
+            }
+            Spacer()
+        
+         
         }
         .padding()
     }
 }
+
+
+
 
 #Preview {
     ContentView()
