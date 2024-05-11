@@ -32,25 +32,12 @@ struct ContentView: View {
             }
             Spacer()
             HStack(spacing:50){
-                Text("$")
+                Text("Rs")
                 TextField("Enter Amount",text:$total)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             .font(.system(size: 30))
-            Spacer()
-//            HStack(spacing:30){
-//                Text("Tip")
-//                TextField("Enter Tip Amount",text:$tipPercent)
-//                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//            }
-//            .font(.system(size: 30))
-            Spacer()
             
-//            Button("Calculate Tip"){
-//                calculateTip()
-//            }
-            
-//
             HStack{
                 Slider(value:$tipPercent , in:1...50, step: 1.0)
                 Text("\(Int(tipPercent))")
@@ -58,16 +45,17 @@ struct ContentView: View {
             }
             if let totalNumber = Double(total){
                              Text("Tip Amount: Rs\(totalNumber * tipPercent/100, specifier: "%0.2f")")
+                    .font(.system(size: 25))
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .foregroundStyle(.red)
                          }else {
                              Text("Please enter a numeric input")
+                                 .font(.system(size: 25))
+                                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                 .foregroundStyle(.red)
                          }
-            Button("Calculate"){
-                finalAmount()
-            }
-            
-            func finalAmount(){
-                
-            }
+           
+           
             Spacer()
         
          
